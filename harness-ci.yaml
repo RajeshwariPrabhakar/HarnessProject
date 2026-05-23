@@ -3,21 +3,33 @@ pipeline:
   identifier: Java_CI
   projectIdentifier: default_project
   orgIdentifier: default
-  tags: {}
 
   stages:
     - stage:
         name: Build
         identifier: Build
-        description: ""
         type: CI
 
         spec:
           cloneCodebase: true
 
           infrastructure:
-            type: Cloud
-            spec: {}
+            useFromStage: false
+            type: KubernetesDirect
+
+            spec:
+              connectorRef: account.harnessImage
+              namespace: default
+
+              automountServiceAccountToken: true
+
+              os: Linux
+
+              nodeSelector: {}
+
+              containerSecurityContext:
+                privileged: false
+                runAsNonRoot: false
 
           execution:
             steps:
@@ -25,9 +37,9 @@ pipeline:
                   type: Run
                   name: Maven_Build
                   identifier: Maven_Build
+
                   spec:
                     shell: Sh
+
                     command: |
                       mvn clean package
-
-        variables: []
