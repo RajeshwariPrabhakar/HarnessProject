@@ -1,0 +1,24 @@
+pipeline:
+  name: Java-CI
+  identifier: Java_CI
+  projectIdentifier: Default_Project
+  orgIdentifier: default
+  stages:
+    - stage:
+        name: Build
+        identifier: Build
+        type: CI
+        spec:
+          cloneCodebase: true
+          infrastructure:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Maven Build
+                  identifier: Maven_Build
+                  spec:
+                    shell: Sh
+                    command: mvn clean package
