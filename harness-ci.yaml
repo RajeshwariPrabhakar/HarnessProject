@@ -3,11 +3,13 @@ pipeline:
   identifier: Java_CI
   projectIdentifier: default_project
   orgIdentifier: default
+  tags: {}
 
   stages:
     - stage:
         name: Build
         identifier: Build
+        description: ""
         type: CI
 
         spec:
@@ -27,3 +29,5 @@ pipeline:
                     shell: Sh
                     command: |
                       mvn clean package
+
+        variables: []
