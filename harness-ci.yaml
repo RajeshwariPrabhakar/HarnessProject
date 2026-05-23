@@ -3,16 +3,24 @@ pipeline:
   identifier: Java_CI
   projectIdentifier: Default_Project
   orgIdentifier: default
+
   stages:
     - stage:
         name: Build
         identifier: Build
         type: CI
+
         spec:
           cloneCodebase: true
+
           infrastructure:
-            type: Cloud
-            spec: {}
+            type: KubernetesDirect
+            spec:
+              connectorRef: account.harnessImage
+              namespace: default
+              automountServiceAccountToken: true
+              os: Linux
+
           execution:
             steps:
               - step:
