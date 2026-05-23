@@ -9,7 +9,10 @@ pipeline:
       codebase:
         connectorRef: GitHubConnector
         repoName: HarnessProject
-        build: <+input>
+        build:
+          type: branch
+          spec:
+            branch: main
 
   stages:
     - stage:
@@ -21,20 +24,8 @@ pipeline:
           cloneCodebase: true
 
           infrastructure:
-            useFromStage: false
-
-            type: KubernetesDirect
-
-            spec:
-              connectorRef: account.harnessImage
-              namespace: default
-
-              type: KubernetesDirect
-
-              spec:
-                platform: Linux
-
-              automountServiceAccountToken: true
+            type: Cloud
+            spec: {}
 
           execution:
             steps:
@@ -44,9 +35,8 @@ pipeline:
                   identifier: Maven_Build
 
                   spec:
-                    shell: Sh
-
                     image: maven:3.9.6-eclipse-temurin-17
+                    shell: Sh
 
                     command: |
                       mvn clean package
