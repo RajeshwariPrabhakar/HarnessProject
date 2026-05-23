@@ -1,7 +1,7 @@
 pipeline:
   name: Java-CI
   identifier: Java_CI
-  projectIdentifier: Default_Project
+  projectIdentifier: default_project
   orgIdentifier: default
   stages:
     - stage:
