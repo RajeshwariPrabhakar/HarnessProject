@@ -15,21 +15,19 @@ pipeline:
 
           infrastructure:
             useFromStage: false
+
             type: KubernetesDirect
 
             spec:
               connectorRef: account.harnessImage
               namespace: default
 
+              type: KubernetesDirect
+
+              spec:
+                platform: Linux
+
               automountServiceAccountToken: true
-
-              os: Linux
-
-              nodeSelector: {}
-
-              containerSecurityContext:
-                privileged: false
-                runAsNonRoot: false
 
           execution:
             steps:
