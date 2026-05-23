@@ -4,6 +4,13 @@ pipeline:
   projectIdentifier: default_project
   orgIdentifier: default
 
+  properties:
+    ci:
+      codebase:
+        connectorRef: GitHubConnector
+        repoName: HarnessProject
+        build: <+input>
+
   stages:
     - stage:
         name: Build
