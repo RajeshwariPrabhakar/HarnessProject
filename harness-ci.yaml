@@ -1,7 +1,7 @@
 pipeline:
   name: Java-CI
   identifier: Java_CI
-  projectIdentifier: default_project
+  projectIdentifier: Default_Project
   orgIdentifier: default
   stages:
     - stage:
@@ -17,8 +17,9 @@ pipeline:
             steps:
               - step:
                   type: Run
-                  name: Maven Build
+                  name: Maven_Build
                   identifier: Maven_Build
                   spec:
                     shell: Sh
-                    command: mvn clean package
+                    command: |
+                      mvn clean package
