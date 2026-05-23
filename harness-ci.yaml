@@ -24,21 +24,8 @@ pipeline:
           cloneCodebase: true
 
           infrastructure:
-            useFromStage: false
-
-            type: KubernetesDirect
-
-            spec:
-              connectorRef: account.harnessImage
-
-              namespace: default
-
-              type: KubernetesDirect
-
-              spec:
-                platform: Linux
-
-              automountServiceAccountToken: true
+            type: Hosted
+            spec: {}
 
           execution:
             steps:
@@ -48,10 +35,7 @@ pipeline:
                   identifier: Maven_Build
 
                   spec:
-                    connectorRef: account.harnessImage
-
                     image: maven:3.9.6-eclipse-temurin-17
-
                     shell: Sh
 
                     command: |
